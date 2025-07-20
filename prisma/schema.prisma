@@ -1,0 +1,89 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Trip {
+  id          String   @id @default(cuid())
+  name        String
+  location    String?
+  startDate   DateTime?
+  endDate     DateTime?
+  isArchived  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  participants Participant[]
+  expenses     Expense[]
+  transfers    Transfer[]
+
+  @@map("trips")
+}
+
+model Participant {
+  id     String @id @default(cuid())
+  name   String
+  tripId String
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  expensesPaid     Expense[] @relation("ExpensePayer")
+  expenseShares    ExpenseShare[]
+  transfersFrom    Transfer[] @relation("TransferFrom")
+  transfersTo      Transfer[] @relation("TransferTo")
+
+  @@map("participants")
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  description String
+  amount      Decimal  @db.Decimal(10, 2)
+  currency    String   @default("RUB")
+  date        DateTime @default(now())
+  payerId     String
+  tripId      String
+  createdAt   DateTime @default(now())
+
+  trip   Trip        @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  payer  Participant @relation("ExpensePayer", fields: [payerId], references: [id])
+  shares ExpenseShare[]
+
+  @@map("expenses")
+}
+
+model ExpenseShare {
+  id            String  @id @default(cuid())
+  expenseId     String
+  participantId String
+  amount        Decimal @db.Decimal(10, 2)
+
+  expense     Expense     @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  participant Participant @relation(fields: [participantId], references: [id])
+
+  @@unique([expenseId, participantId])
+  @@map("expense_shares")
+}
+
+model Transfer {
+  id          String   @id @default(cuid())
+  amount      Decimal  @db.Decimal(10, 2)
+  currency    String   @default("RUB")
+  description String?
+  date        DateTime @default(now())
+  fromId      String
+  toId        String
+  tripId      String
+  createdAt   DateTime @default(now())
+
+  trip Trip        @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  from Participant @relation("TransferFrom", fields: [fromId], references: [id])
+  to   Participant @relation("TransferTo", fields: [toId], references: [id])
+
+  @@map("transfers")
+}
