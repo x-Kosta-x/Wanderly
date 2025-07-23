@@ -1,52 +1,67 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Modern, elegant color palette - Light mode */
+    --background: 0 0% 99%;
+    --foreground: 224 13% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 224 13% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --popover-foreground: 224 13% 10%;
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 224 13% 10%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 224 13% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 84% 56%;
     --radius: 0.5rem;
+    
+    /* Chart colors - elegant and harmonious */
+    --chart-1: 214 84% 56%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 43 74% 49%;
+    --chart-4: 27 87% 67%;
+    --chart-5: 262 83% 58%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
+    /* Dark mode - sophisticated and modern */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 214 84% 56%;
+    --primary-foreground: 224 71% 4%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 65%;
+    --accent: 215 28% 17%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 214 84% 56%;
+    
+    /* Chart colors for dark mode */
+    --chart-1: 214 84% 56%;
+    --chart-2: 173 58% 49%;
+    --chart-3: 43 74% 59%;
+    --chart-4: 27 87% 72%;
+    --chart-5: 262 83% 68%;
   }
 }
 
@@ -59,36 +74,36 @@
   }
 }
 
-/* Кастомные стили для темы путешествий */
+/* Elegant travel-themed styles */
 .travel-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  background: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(214 84% 46%) 100%);
 }
 
 .travel-card {
-  @apply bg-white/80 backdrop-blur-sm border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300;
+  @apply bg-card/95 backdrop-blur-sm border border-border shadow-lg hover:shadow-xl transition-all duration-300;
 }
 
 .travel-button {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+  @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-lg transition-colors duration-200;
 }
 
 .travel-input {
-  @apply border-blue-200 focus:border-blue-500 focus:ring-blue-500/20;
+  @apply border-input focus:border-primary focus:ring-primary/20;
 }
 
 .debt-positive {
-  @apply text-green-600 bg-green-50 border-green-200;
+  @apply text-emerald-700 bg-emerald-50 border-emerald-200;
 }
 
 .debt-negative {
-  @apply text-red-600 bg-red-50 border-red-200;
+  @apply text-rose-700 bg-rose-50 border-rose-200;
 }
 
 .debt-neutral {
-  @apply text-gray-600 bg-gray-50 border-gray-200;
+  @apply text-slate-700 bg-slate-50 border-slate-200;
 }
 
-/* Анимации */
+/* Enhanced animations */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -100,7 +115,7 @@
   }
 }
 
-.animate-slide-in {
+.slide-in {
   animation: slideIn 0.3s ease-out;
 }
 
@@ -113,13 +128,16 @@
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.2s ease-out;
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* Мобильная адаптация */
-@media (max-width: 640px) {
-  .travel-card {
-    @apply mx-2;
-  }
+/* Elegant hover states */
+.elegant-hover {
+  @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+}
+
+/* Modern glass effect */
+.glass-effect {
+  @apply bg-card/80 backdrop-blur-md border border-border/50;
 }

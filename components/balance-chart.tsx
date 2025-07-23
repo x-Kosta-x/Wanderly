@@ -10,11 +10,20 @@ interface BalanceChartProps {
   balances: Balance[]
 }
 
-const COLORS = ['#60B5FF', '#FF9149', '#FF9898', '#FF90BB', '#FF6363', '#80D8C3', '#A19AD3', '#72BF78']
+const COLORS = [
+  'hsl(214, 84%, 56%)', // Primary blue
+  'hsl(173, 58%, 39%)', // Teal
+  'hsl(43, 74%, 49%)',  // Warm yellow
+  'hsl(27, 87%, 67%)',  // Coral
+  'hsl(262, 83%, 58%)', // Purple
+  'hsl(214, 84%, 46%)', // Deeper blue
+  'hsl(173, 58%, 49%)', // Lighter teal
+  'hsl(43, 74%, 59%)'   // Lighter yellow
+]
 
 export default function BalanceChart({ balances }: BalanceChartProps) {
   const { t } = useLanguage()
-  
+
   // Группируем балансы по валютам
   const balancesByCurrency = balances.reduce((acc, balance) => {
     if (!acc[balance.currency]) {

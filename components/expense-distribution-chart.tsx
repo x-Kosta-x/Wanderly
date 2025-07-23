@@ -14,7 +14,16 @@ interface ExpenseDistributionChartProps {
   expenses: Expense[]
 }
 
-const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4', '#84CC16', '#F97316']
+const COLORS = [
+  'hsl(214, 84%, 56%)', // Primary blue
+  'hsl(173, 58%, 39%)', // Teal
+  'hsl(43, 74%, 49%)',  // Warm yellow
+  'hsl(27, 87%, 67%)',  // Coral
+  'hsl(262, 83%, 58%)', // Purple
+  'hsl(214, 84%, 66%)', // Lighter blue
+  'hsl(173, 58%, 49%)', // Lighter teal
+  'hsl(43, 74%, 59%)'   // Lighter yellow
+]
 
 export default function ExpenseDistributionChart({ participants, expenses }: ExpenseDistributionChartProps) {
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null)
@@ -35,28 +44,28 @@ export default function ExpenseDistributionChart({ participants, expenses }: Exp
     return acc
   }, {} as Record<string, Expense[]>)
 
-  // Если нет расходов
+  // Wenn nет расходов
   if (expenses.length === 0) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="h-64 flex items-center justify-center text-gray-500"
+        className="h-64 flex items-center justify-center text-muted-foreground"
       >
         <div className="text-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center"
+            className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full mx-auto mb-4 flex items-center justify-center"
           >
-            <PieChartIcon className="w-8 h-8 text-blue-500" />
+            <PieChartIcon className="w-8 h-8 text-primary" />
           </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-gray-500 font-medium"
+            className="text-foreground font-medium"
           >
             {t('expense.noExpensesToShow')}
           </motion.p>
@@ -64,7 +73,7 @@ export default function ExpenseDistributionChart({ participants, expenses }: Exp
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-sm text-gray-400 mt-1"
+            className="text-sm text-muted-foreground mt-1"
           >
             {t('expense.addFirstExpense')}
           </motion.p>
